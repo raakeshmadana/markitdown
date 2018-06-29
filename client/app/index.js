@@ -7,8 +7,6 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import App from './components/App';
 import reducer from './reducers';
-import Form from './components/Form';
-import SignUpForm from './components/SignUpForm';
 
 const history = createBrowserHistory();
 
@@ -18,6 +16,10 @@ const store = createStore(
     thunk,
     routerMiddleware(history)
   )
+);
+
+const unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
 );
 
 ///*
