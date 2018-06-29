@@ -4,7 +4,7 @@ const passport = require('passport');
 const Account = require('../models/account');
 
 router.post('/', function(req, res){
-  Account.register(new Account({ username: req.body.uname }), req.body.pwd, function(err, account){
+  Account.register(new Account({ username: req.body.username }), req.body.password, function(err, account){
     if(err){
       res.json(0);
     }

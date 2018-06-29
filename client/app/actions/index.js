@@ -3,9 +3,12 @@ import * as types from '../constants/actionTypes'
 export const signUp = (uname, pwd) => dispatch => {
   return fetch('http://localhost:3000/register' , {
     method: 'POST',
-    body: JSON.stringify({ uname, pwd }),
-    headers: new Headers({
+    headers:{
       'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      username: uname,
+      password: pwd
     })
   })
   .then(
