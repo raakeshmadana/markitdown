@@ -25,9 +25,8 @@ class SignUpForm extends React.Component {
   }
 
   submit(event) {
-    //alert('Works');
     event.preventDefault();
-    this.props.signUp(this.state.email, this.state.password);
+    this.props.dispatch(signUp(this.state.email, this.state.password));
   }
 
   render() {
@@ -41,12 +40,4 @@ class SignUpForm extends React.Component {
   }
 }
 
-SignUpForm.propTypes = {
-	signUp: PropTypes.number.func
-}
-
-//export default connect()(SignUpForm);
-
-const mapDispatchToProps = { signUp }
-
-export default connect(null, mapDispatchToProps)(SignUpForm)
+export default connect()(SignUpForm)
