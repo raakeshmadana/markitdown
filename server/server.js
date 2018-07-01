@@ -18,6 +18,8 @@ const dbUrl = 'mongodb://' + process.env.dbUser + ':' + process.env.dbPass + '@n
 
 //Import routes
 const register = require('./routes/register');
+const login = require('./routes/login');
+const logout = require('./routes/logout');
 
 const app = express();
 
@@ -47,7 +49,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Passport config
-var Account = require('./models/account');
+const Account = require('./models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
@@ -57,6 +59,8 @@ mongoose.connect(dbUrl);
 
 //Use routes
 app.use('/register', register);
+app.use('/login', login);
+app.use('/logout', logout);
 
 app.get('*', function(req, res) {
   res.sendFile(path.resolve(__dirname, '../client/public/index.html'));

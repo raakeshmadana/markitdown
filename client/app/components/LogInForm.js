@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signUp } from '../actions';
+import { logIn } from '../actions';
 
-class SignUpForm extends React.Component {
+class LogInForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,22 +27,22 @@ class SignUpForm extends React.Component {
 
   submit(event) {
     event.preventDefault();
-    this.props.dispatch(signUp(this.state.email, this.state.password));
+    this.props.dispatch(logIn(this.state.email, this.state.password));
   }
 
   render() {
     return (
       <div>
-        <h3>Sign Up</h3>
+        <h3>Log In</h3>
         <form onSubmit={this.submit}>
           <input type="text" placeholder="Email" value={this.state.email} onChange={this.setEmail} />
           <input type="password" placeholder="Password" value={this.state.password} onChange={this.setPassword} />
-          <input type="submit" value="Sign up" />
+          <input type="submit" value="Log In" />
         </form>
-        <Link to='/login'>Log In</Link>
+        <Link to="/">Sign Up</Link>
       </div>
     );
   }
 }
 
-export default connect()(SignUpForm)
+export default connect()(LogInForm)
