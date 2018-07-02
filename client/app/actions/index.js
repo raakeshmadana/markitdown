@@ -63,7 +63,7 @@ export const logOut = () => dispatch => {
     response => {
       if(response.ok) {
         console.log("log out success");
-        dispatch(authFailure());
+        dispatch(resetState());
         dispatch(push('/'));
       }
     },
@@ -72,6 +72,10 @@ export const logOut = () => dispatch => {
     }
   )
 }
+
+export const resetState = () => ({
+  type: types.RESET_STATE
+}) 
 
 export const authSuccess = (uname) => ({
   type: types.AUTH_SUCCESS,

@@ -17,6 +17,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         loggedIn: false
       }
+    case types.RESET_STATE:
+      return initialState
     default:
       return state
   }
