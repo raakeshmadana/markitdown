@@ -4,8 +4,8 @@
   "description": "A web application to write notes using Markdown",
   "main": "./server/server.js",
   "scripts": {
-    "test": "jest", 
-	"test:watch": "npm test -- --watch",
+    "test": "jest",
+    "test:watch": "npm test -- --watch",
     "build": "webpack",
     "start": "nodemon ./server/server.js --exec babel-node",
     "serve": "node ./server/server.js"
