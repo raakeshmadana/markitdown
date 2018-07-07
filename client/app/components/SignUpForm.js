@@ -11,12 +11,14 @@ class SignUpForm extends React.Component {
       email: '',
       password: '',
       canSubmit: false,
+      emailTouched: false,
+      passwordTouched: false,
       emailError: '',
       passwordError: ''
     };
 
-    this.checkEmail = this.checkEmail.bind(this);
-    this.checkPassword = this.checkPassword.bind(this);
+    this.setEmail = this.setEmail.bind(this);
+    this.setPassword = this.setPassword.bind(this);
     this.disableButton = this.disableButton.bind(this);
     this.enableButton = this.enableButton.bind(this);
     this.setEmailError = this.setEmailError.bind(this);
@@ -26,22 +28,28 @@ class SignUpForm extends React.Component {
     this.submit = this.submit.bind(this);
   }
 
-  checkEmail(event) {
+  setEmail(event) {
     this.setState({email: event.target.value});
-    if (!this.state.email.search(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/gi)) {
-      this.enableButton();
+    this.setState({emailTouched: true});
+    if (!event.target.value.search(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/gi)) {
       this.clearEmailError();
+      if (this.state.passwordError.length == 0 && this.state.passwordTouched) {
+        this.enableButton();
+      }
     } else {
       this.disableButton();
       this.setEmailError();
     }
   }
 
-  checkPassword(event) {
+  setPassword(event) {
     this.setState({password: event.target.value});
-    if (this.state.password.length >=8) {
-      this.enableButton();
+    this.setState({passwordTouched: true});
+    if (event.target.value.length >=8) {
       this.clearPasswordError();
+      if (this.state.emailError.length == 0 && this.state.emailTouched) {
+        this.enableButton();
+      }
     } else {
       this.disableButton();
       this.setPasswordError();
@@ -82,9 +90,9 @@ class SignUpForm extends React.Component {
       <div>
         <h3>Sign Up</h3>
         <form onSubmit={this.submit}>
-          <input type="text" placeholder="Email" value={this.state.email} onChange={this.checkEmail} />
+          <input type="text" placeholder="Email" value={this.state.email} onChange={this.setEmail} />
           <span>{this.state.emailError}</span>
-          <input type="password" placeholder="Password" value={this.state.password} onChange={this.checkPassword} />
+          <input type="password" placeholder="Password" value={this.state.password} onChange={this.setPassword} />
           <span>{this.state.passwordError}</span>
           <input type="submit" value="Sign up" disabled={!this.state.canSubmit}/>
         </form>
