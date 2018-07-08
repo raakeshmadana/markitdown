@@ -10,7 +10,8 @@ export const signUp = (uname, pwd) => dispatch => {
     body: JSON.stringify({
       username: uname,
       password: pwd
-    })
+    }),
+    credentials: 'same-origin'
   })
   .then(
     response => {
@@ -38,7 +39,8 @@ export const logIn = (uname, pwd) => dispatch => {
     body: JSON.stringify({
       username: uname,
       password: pwd
-    })
+    }),
+    credentials: 'same-origin'
   })
   .then(
     response => {
@@ -58,7 +60,10 @@ export const logIn = (uname, pwd) => dispatch => {
 }
 
 export const logOut = () => dispatch => {
-  return fetch('http://localhost:3000/logout')
+  return fetch('http://localhost:3000/logout', {
+    method: 'GET',
+    credentials: 'same-origin'
+  })
   .then(
     response => {
       if(response.ok) {
