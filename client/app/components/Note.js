@@ -9,7 +9,7 @@ class Note extends React.Component {
     super(props);
     this.noteRef = React.createRef();
     this.save = this.save.bind(this);
-    //setInterval(this.saveNote, 10000);
+    setInterval(this.save, 30000);
   }
 
   save(){
