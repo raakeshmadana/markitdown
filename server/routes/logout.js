@@ -8,8 +8,9 @@ router.get('/', function(req, res) {
   req.session.destroy(function(err) {
     if(err) {
       console.log(err);
+      res.sendStatus(403);
     } else {
-      res.json(1);
+      res.sendStatus(200);
     }
   });
 });
