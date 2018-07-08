@@ -8,18 +8,18 @@ class Note extends React.Component {
   constructor(props) {
     super(props);
     this.noteRef = React.createRef();
-    this.saveNote = this.saveNote.bind(this);
+    this.save = this.save.bind(this);
     //setInterval(this.saveNote, 10000);
   }
 
-  saveNote(){
-    this.props.dispatch(saveNote(this.props.params.id, this.noteRef.current.innerText));
+  save(){
+    this.props.dispatch(saveNote(this.props.match.params.id, this.noteRef.current.innerText));
   }
 
   render() {
     return (
       <div>
-        <button type="button" onClick={this.saveNote}>Save</button>
+        <button type="button" onClick={this.save}>Save</button>
         <div contentEditable="true" ref={this.noteRef}>
         </div>
       </div>

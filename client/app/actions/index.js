@@ -103,6 +103,30 @@ export const addNote = () => dispatch => {
   )
 }
 
+export const saveNote = (noteId, update) => dispatch => {
+  return fetch('http://localhost:3000/saveNote', {
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: noteId,
+      note: update
+    }),
+    credentials: 'same-origin'
+  })
+  .then(
+    response => {
+      if (response.ok) {
+        console.log("Note updated");
+      }
+    },
+    error => {
+      console.log("Error updating note");
+    }
+  )
+}
+
 export const currentNote = (id) => ({
   type: types.CURRENT_NOTE,
   id
