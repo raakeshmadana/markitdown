@@ -78,6 +78,36 @@ export const logOut = () => dispatch => {
   )
 }
 
+export const addNote = () => dispatch => {
+  return fetch('http://localhost:3000/addNote', {
+    method: 'GET',
+    credentials: 'same-origin'
+  })
+  .then(
+    response => response.ok ? response.json(): null,
+    error => {
+      console.log("Error adding new note", error);
+    }
+  )
+  .then(
+    doc => {
+      if (doc != null) {
+        console.log(doc);
+        dispatch(currentNote(doc._id));
+        dispatch(push('/note/' + doc._id));
+      }
+    },
+    error => {
+      console.log("Error parsing json", error);
+    }
+  )
+}
+
+export const currentNote = (id) => ({
+  type: types.CURRENT_NOTE,
+  id
+})
+
 export const resetState = () => ({
   type: types.RESET_STATE
 }) 

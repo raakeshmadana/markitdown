@@ -20,6 +20,7 @@ const dbUrl = 'mongodb://' + process.env.dbUser + ':' + process.env.dbPass + '@n
 const register = require('./routes/register');
 const login = require('./routes/login');
 const logout = require('./routes/logout');
+const addNote = require('./routes/addNote');
 
 const app = express();
 
@@ -61,6 +62,7 @@ mongoose.connect(dbUrl);
 app.use('/register', register);
 app.use('/login', login);
 app.use('/logout', logout);
+app.use('/addNote', addNote);
 
 app.get('*', function(req, res) {
   res.sendFile(path.resolve(__dirname, '../client/public/index.html'));

@@ -17,6 +17,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         loggedIn: false
       }
+    case types.CURRENT_NOTE:
+      return {
+        ...state,
+        currentNote: action.id
+      }
     case types.RESET_STATE:
       return initialState
     default:
