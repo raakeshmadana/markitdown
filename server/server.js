@@ -22,6 +22,7 @@ const login = require('./routes/login');
 const logout = require('./routes/logout');
 const addNote = require('./routes/addNote');
 const saveNote = require('./routes/saveNote');
+const getNotes = require('./routes/getNotes');
 
 const app = express();
 
@@ -65,6 +66,7 @@ app.use('/login', login);
 app.use('/logout', logout);
 app.use('/addNote', addNote);
 app.use('/saveNote', saveNote);
+app.use('/getnotes', getNotes);
 
 app.get('*', function(req, res) {
   res.sendFile(path.resolve(__dirname, '../client/public/index.html'));

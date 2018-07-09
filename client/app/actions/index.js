@@ -127,6 +127,32 @@ export const saveNote = (noteId, update) => dispatch => {
   )
 }
 
+export const getNotes = () => dispatch => {
+  return fetch('http://localhost:3000/getnotes', {
+    method: 'GET',
+    credentials: 'same-origin'
+  })
+  .then(
+    response => response.ok ? response.json() : null,
+    error => {
+      console.log("Error getting notes");
+    }
+  )
+  .then(
+    notes => {
+      dispatch(renderNotes(notes));
+    },
+    error => {
+      console.log("Error parsing notes json");
+    }
+  )
+}
+
+export const renderNotes = (notes) => ({
+  type: types.RENDER_NOTES,
+  notes
+})
+
 export const currentNote = (id) => ({
   type: types.CURRENT_NOTE,
   id

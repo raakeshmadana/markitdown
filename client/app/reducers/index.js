@@ -1,7 +1,8 @@
 import * as types from '../constants/actionTypes'
 
 const initialState = {
-  loggedIn: false
+  loggedIn: false,
+  notes: {}
 }
 
 const reducer = (state = initialState, action) => {
@@ -21,6 +22,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentNote: action.id
+      }
+    case types.RENDER_NOTES:
+      return {
+        ...state,
+        notes: action.notes
       }
     case types.RESET_STATE:
       return initialState
