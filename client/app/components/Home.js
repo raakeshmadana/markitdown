@@ -12,6 +12,22 @@ class Home extends React.Component {
   componentDidMount() {
     this.props.dispatch(getNotes());
   }
+  
+  renderNotes() {
+    const notes = this.props.notes.map(
+      note => {
+        let str = 'note/' + note._id;
+        return (
+          <div>
+            <Link to={str}>{note._id}</Link>
+          </div>
+        )
+      }
+    );
+    return (
+      <div>{notes}</div>
+    );
+  }
 
   render() {
     return (
@@ -21,6 +37,7 @@ class Home extends React.Component {
           <Link to='addnote' target='_blank'>Add Note</Link>
           <Link to='logout'>Logout</Link>
         </div>
+        {this.renderNotes()}
       </div>
     );
   }
