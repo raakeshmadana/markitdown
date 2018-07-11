@@ -34,7 +34,7 @@ class Home extends React.Component {
       <div>
         <div>
           <h1>Your notes</h1>
-          <Link to='addnote' target='_blank'>Add Note</Link>
+          <Link to='addnote'>Add Note</Link>
           <Link to='logout'>Logout</Link>
         </div>
         {this.renderNotes()}
