@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { newNote } from '../actions';
 
-class AddNote extends React.Component {
+class NewNote extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -20,4 +20,4 @@ class AddNote extends React.Component {
   }
 }
 
-export default connect()(AddNote);
+export default connect()(NewNote);
