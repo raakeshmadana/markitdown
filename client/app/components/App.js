@@ -8,6 +8,8 @@ import Home from './Home'
 import LogOut from './LogOut'
 import AddNote from './AddNote'
 import Note from './Note'
+import EditNote from './EditNote'
+import ViewNote from './ViewNote'
 
 const App = ({ history }) => (
   <ConnectedRouter history={history}>
@@ -17,7 +19,9 @@ const App = ({ history }) => (
       <Route exact path='/logout' component={LogOut} />
       <Route exact path='/home' component={Home} />
       <Route exact path='/addnote' component={AddNote} />
-      <Route path='/note/:id' component={Note} />
+      <Route exact path='/note/:id' component={Note} />
+      <Route exact path='/note/:id/edit' component={EditNote} />
+      <Route exact path='/note/:id/view' component={ViewNote} />
     </div>
   </ConnectedRouter>
 )
