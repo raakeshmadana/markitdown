@@ -16,7 +16,7 @@ class Home extends React.Component {
   renderNotes() {
     const notes = this.props.notes.map(
       note => {
-        let str = 'note/' + note._id;
+        let str = 'note/' + note._id + '/view';
         return (
           <div>
             <Link to={str}>{note._id}</Link>
