@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addNote } from '../actions';
+import { newNote } from '../actions';
 
 class AddNote extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class AddNote extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(addNote());
+    this.props.dispatch(newNote());
   }
   
   render() {

@@ -28,6 +28,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         notes: action.notes
       }
+    case types.ADD_NOTE:
+      return {
+        ...state,
+        notes: [
+          ...state.notes,
+          {
+            _id: action.id,
+            timestamp: action.timestamp,
+            note: ''
+          }
+        ]
+      }
     case types.UPDATE_NOTE:
       let obj = { ...state };
       for(let i = 0; i < obj.notes.length; i++) {

@@ -78,7 +78,7 @@ export const logOut = () => dispatch => {
   )
 }
 
-export const addNote = () => dispatch => {
+export const newNote = () => dispatch => {
   return fetch('http://localhost:3000/addNote', {
     method: 'GET',
     credentials: 'same-origin'
@@ -94,7 +94,8 @@ export const addNote = () => dispatch => {
       if (doc != null) {
         console.log(doc);
         dispatch(currentNote(doc._id));
-        dispatch(push('/note/' + doc._id));
+        dispatch(addNote(doc._id, doc.timestamp));
+        dispatch(push('/note/' + doc._id + '/edit'));
       }
     },
     error => {
@@ -152,6 +153,12 @@ export const updateNote = (noteId, update) => ({
   type: types.UPDATE_NOTE,
   noteId,
   update
+})
+
+export const addNote = (id, timestamp) => ({
+  type: types.ADD_NOTE,
+  id,
+  timestamp
 })
 
 export const renderNotes = (notes) => ({
