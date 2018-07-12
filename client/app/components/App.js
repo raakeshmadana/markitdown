@@ -18,7 +18,7 @@ const App = ({ history }) => (
       <Route exact path='/login' component={LogInForm} />
       <Route exact path='/logout' component={LogOut} />
       <Route exact path='/home' component={Home} />
-      <Route exact path='/addnote' component={AddNote} />
+      <Route exact path='/note/new' component={AddNote} />
       <Route exact path='/note/:id' component={Note} />
       <Route exact path='/note/:id/edit' component={EditNote} />
       <Route exact path='/note/:id/view' component={ViewNote} />
