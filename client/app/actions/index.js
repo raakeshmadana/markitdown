@@ -148,6 +148,12 @@ export const getNotes = () => dispatch => {
   )
 }
 
+export const updateNote = (noteId, update) => ({
+  type: types.UPDATE_NOTE,
+  noteId,
+  update
+})
+
 export const renderNotes = (notes) => ({
   type: types.RENDER_NOTES,
   notes

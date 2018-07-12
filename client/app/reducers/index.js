@@ -28,6 +28,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         notes: action.notes
       }
+    case types.UPDATE_NOTE:
+      let obj = { ...state };
+      for(let i = 0; i < obj.notes.length; i++) {
+        if(obj.notes[i]._id == action.noteId) {
+          obj.notes[i].note = action.update;
+        }
+      }
+      return obj;
     case types.RESET_STATE:
       return initialState
     default:
