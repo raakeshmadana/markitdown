@@ -45,6 +45,7 @@ const reducer = (state = initialState, action) => {
       for(let i = 0; i < obj.notes.length; i++) {
         if(obj.notes[i]._id == action.noteId) {
           obj.notes[i].note = action.update;
+          obj.notes[i].preview = action.preview;
         }
       }
       return obj;

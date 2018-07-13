@@ -128,6 +128,35 @@ export const saveNote = (noteId, update) => dispatch => {
   )
 }
 
+export const previewNote = (noteId, update) => dispatch => {
+  dispatch(saveNote(noteId, update));
+  return fetch('http://localhost:3000/previewNote', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      note: update
+    }),
+    credentials: 'same-origin'
+  })
+  .then(
+    response => response.ok ? response.json() : null,
+    error => {
+      console.log("Error getting preview");
+    }
+  )
+  .then(
+    json => {
+      dispatch(updateNote(noteId, update, json.html));
+      dispatch(push('/note/' + noteId + '/view'));
+    },
+    error => {
+      console.log("Error parsing json");
+    }
+  )
+}
+
 export const getNotes = () => dispatch => {
   return fetch('http://localhost:3000/getnotes', {
     method: 'GET',
@@ -149,10 +178,11 @@ export const getNotes = () => dispatch => {
   )
 }
 
-export const updateNote = (noteId, update) => ({
+export const updateNote = (noteId, update, preview) => ({
   type: types.UPDATE_NOTE,
   noteId,
-  update
+  update,
+  preview
 })
 
 export const addNote = (id, timestamp) => ({

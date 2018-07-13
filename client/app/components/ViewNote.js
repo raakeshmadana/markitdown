@@ -7,18 +7,22 @@ class ViewNote extends React.Component {
   constructor(props) {
     super(props);
     this.renderHTML = this.renderHTML.bind(this);
+    this.createMarkup = this.createMarkup.bind(this);
+  }
+
+  createMarkup(preview) {
+    return { __html: preview };
   }
 
   renderHTML() {
     for(let i = 0; i < this.props.notes.length; i++) {
       if(this.props.notes[i]._id == this.props.match.params.id) {
         let str = '/note/' + this.props.match.params.id + '/edit';
+        console.log(this.props.notes[i].preview);
         return (
           <div>
             <Link to={str}>Edit</Link>
-            <pre>
-              {this.props.notes[i].note}
-            </pre>
+            <div dangerouslySetInnerHTML={this.createMarkup(this.props.notes[i].preview)} />
           </div>
         );
       }

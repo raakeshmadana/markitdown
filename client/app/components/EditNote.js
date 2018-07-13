@@ -2,26 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { saveNote, updateNote } from '../actions';
+import { saveNote, previewNote } from '../actions';
 import { push } from 'connected-react-router';
 
 class EditNote extends React.Component {
   constructor(props) {
     super(props);
     this.noteRef = React.createRef();
+    this.preview = this.preview.bind(this);
     this.update = this.update.bind(this);
-    this.updateServer = this.updateServer.bind(this);
     this.renderMD = this.renderMD.bind(this);
     setInterval(this.updateServer, 30000);
   }
 
-  update() {
-    this.updateServer();
-    this.props.dispatch(updateNote(this.props.match.params.id, this.noteRef.current.innerText));
-    this.props.dispatch(push('/note/' + this.props.match.params.id + '/view'));
+  preview() {
+    this.props.dispatch(previewNote(this.props.match.params.id, this.noteRef.current.innerText));
   }
 
-  updateServer() {
+  update() {
     this.props.dispatch(saveNote(this.props.match.params.id, this.noteRef.current.innerText));
   }
 
@@ -40,8 +38,8 @@ class EditNote extends React.Component {
   render() {
     return (
       <div>
-        <button type="button" onClick={this.update}>Preview</button>
-        <button type="button" onClick={this.updateServer}>Save</button>
+        <button type="button" onClick={this.preview}>Preview</button>
+        <button type="button" onClick={this.update}>Save</button>
         {this.renderMD()}
       </div>
     );
