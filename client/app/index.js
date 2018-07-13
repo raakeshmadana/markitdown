@@ -22,7 +22,6 @@ const unsubscribe = store.subscribe(() =>
   console.log(store.getState())
 );
 
-///*
 ReactDOM.render(
   (
     <Provider store={store}>
@@ -31,11 +30,3 @@ ReactDOM.render(
   ),
   document.getElementById('container')
 );
-//*/
-
-/*
-ReactDOM.render(
-  <Form />,
-  document.getElementById('container')
-);
-*/
