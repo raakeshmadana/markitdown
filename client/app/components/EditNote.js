@@ -24,10 +24,13 @@ class EditNote extends React.Component {
   }
 
   renderMD() {
+    const divStyle = {
+      whiteSpace: "pre-wrap"
+    };
     for(let i = 0; i < this.props.notes.length; i++) {
       if(this.props.notes[i]._id == this.props.match.params.id) {
         return (
-          <div contentEditable="true" ref={this.noteRef}>
+          <div contentEditable="true" style={divStyle} ref={this.noteRef}>
             {this.props.notes[i].note}
           </div>
         );
