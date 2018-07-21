@@ -8,7 +8,7 @@ const db = monk(dbUrl);
 
 router.get('/', function(req, res) {
   const user = db.get(req.session.passport.user);
-  user.insert({ timestamp: new Date() , note: '' })
+  user.insert({ timestamp: Date.now() , note: '' })
     .then(
       doc => {
         res.json(doc);

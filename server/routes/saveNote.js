@@ -10,7 +10,7 @@ const db = monk(dbUrl);
 router.post('/', function(req, res) {
   const user = db.get(req.session.passport.user);
   const objectId = new ObjectID(req.body.id);
-  user.update({ _id: objectId }, { timestamp: new Date() , note: req.body.note }, { upsert: true })
+  user.update({ _id: objectId }, { timestamp: Date.now() , note: req.body.note }, { upsert: true })
     .then(
       success => {
         res.sendStatus(200);
