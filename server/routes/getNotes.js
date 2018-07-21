@@ -20,9 +20,11 @@ router.get('/', function(req, res) {
   const user = db.get(req.session.passport.user)
   user.find(
     { },
-    { sort: { timestamp: -1 } },
-    { limit: 20 })
-    .then(
+    {
+      sort: { timestamp: -1 },
+      limit: 20
+    }
+  ).then(
       docs => {
         let notes = docs.map(
           note => {
