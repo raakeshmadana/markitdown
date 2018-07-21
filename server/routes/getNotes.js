@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const monk = require('monk');
 const hljs = require('highlight.js').configure({
-  tabBR: true
+  useBR: true
 });
 const marked = require('marked').setOptions({
   highlight: (code) => hljs.highlightAuto(code).value,
