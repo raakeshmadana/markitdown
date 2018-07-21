@@ -17,10 +17,12 @@ class Home extends React.Component {
     const notes = this.props.notes.map(
       note => {
         let link = 'note/' + note._id + '/view';
+        let date = new Date(note.timestamp);
         if(note.note.length == 0) {
           return (
             <div>
               <Link to={link}><i>Empty Note</i></Link>
+              <div>{date.toDateString() + " " + date.toLocaleTimeString()}</div>
               <hr/>
             </div>
           )
@@ -31,8 +33,9 @@ class Home extends React.Component {
               <Link to={link}>{lines[0]}</Link>
               <div>{lines[1]}</div>
               <div>{lines[2]}</div>
+              <div>{date.toDateString() + " " + date.toLocaleTimeString()}</div>
               <hr/>
-              </div>
+            </div>
           )
         }
       }
