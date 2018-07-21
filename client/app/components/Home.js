@@ -28,11 +28,21 @@ class Home extends React.Component {
           )
         } else {
           let lines = note.note.split("\n");
+          let ellipsis = "...";
+          const slicedLines = lines.map(
+            line => {
+              if(line.length > 72) {
+                return line.slice(0, 71) + ellipsis;
+              } else {
+                return line;
+              }
+            }
+          );
           return (
             <div>
-              <Link to={link}>{lines[0]}</Link>
-              <div>{lines[1]}</div>
-              <div>{lines[2]}</div>
+              <Link to={link}>{slicedLines[0]}</Link>
+              <div>{slicedLines[1]}</div>
+              <div>{slicedLines[2]}</div>
               <div>{date.toDateString() + " " + date.toLocaleTimeString()}</div>
               <hr/>
             </div>
