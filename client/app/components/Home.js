@@ -16,12 +16,25 @@ class Home extends React.Component {
   renderNotes() {
     const notes = this.props.notes.map(
       note => {
-        let str = 'note/' + note._id + '/view';
-        return (
-          <div>
-            <Link to={str}>{note._id}</Link>
-          </div>
-        )
+        let link = 'note/' + note._id + '/view';
+        if(note.note.length == 0) {
+          return (
+            <div>
+              <Link to={link}><i>Empty Note</i></Link>
+              <hr/>
+            </div>
+          )
+        } else {
+          let lines = note.note.split("\n");
+          return (
+            <div>
+              <Link to={link}>{lines[0]}</Link>
+              <div>{lines[1]}</div>
+              <div>{lines[2]}</div>
+              <hr/>
+              </div>
+          )
+        }
       }
     );
     return (
