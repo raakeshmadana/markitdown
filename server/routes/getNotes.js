@@ -16,13 +16,13 @@ const dbUrl = 'mongodb://' + process.env.dbUser + ':' + process.env.dbPass + '@n
 
 const db = monk(dbUrl);
 
-router.get('/', function(req, res) {
+router.get('/:timestamp', function(req, res) {
   const user = db.get(req.session.passport.user)
   user.find(
-    { },
+    { timestamp: { $lt: parseInt(req.params.timestamp, 10) } },
     {
       sort: { timestamp: -1 },
-      limit: 20
+      limit: 10
     }
   ).then(
       docs => {

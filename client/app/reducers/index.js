@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
     case types.RENDER_NOTES:
       return {
         ...state,
-        notes: action.notes
+        notes: state.notes.concat(action.notes)
       }
     case types.ADD_NOTE:
       return {

@@ -157,8 +157,8 @@ export const previewNote = (noteId, update) => dispatch => {
   )
 }
 
-export const getNotes = () => dispatch => {
-  return fetch('http://localhost:3000/getnotes', {
+export const getNotes = (timestamp) => dispatch => {
+  return fetch('http://localhost:3000/getnotes/' + timestamp, {
     method: 'GET',
     credentials: 'same-origin'
   })

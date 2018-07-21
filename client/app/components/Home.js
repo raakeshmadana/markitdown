@@ -7,10 +7,15 @@ import { getNotes } from '../actions';
 class Home extends React.Component {
   constructor(props){
     super(props);
+    this.getMoreNotes = this.getMoreNotes.bind(this);
   }
 
   componentDidMount() {
-    this.props.dispatch(getNotes());
+    this.props.dispatch(getNotes(Date.now()));
+  }
+
+  getMoreNotes() {
+    this.props.dispatch(getNotes(this.props.notes[this.props.notes.length - 1].timestamp));
   }
   
   renderNotes() {
@@ -64,6 +69,7 @@ class Home extends React.Component {
           <Link to='logout'>Logout</Link>
         </div>
         {this.renderNotes()}
+        <button type="button" onClick={this.getMoreNotes}>Get more</button>
       </div>
     );
   }
