@@ -1,14 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const hljs = require('highlight.js').configure({
-  useBR: true
-});
 const marked = require('marked').setOptions({
-  highlight: (code) => hljs.highlightAuto(code).value,
   gfm: true,
-  breaks: true,
   tables: true,
-  smartlists: true,
+  smartlists: true
 });
 
 router.post('/', function(req, res) {

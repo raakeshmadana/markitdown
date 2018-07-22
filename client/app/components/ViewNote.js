@@ -2,12 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import highlightjs from 'highlight.js';
 
 class ViewNote extends React.Component {
   constructor(props) {
     super(props);
+    this.codeRef = React.createRef();
     this.renderHTML = this.renderHTML.bind(this);
     this.createMarkup = this.createMarkup.bind(this);
+  }
+
+  componentDidMount() {
+    highlightjs.highlightBlock(this.codeRef.current);
+  }
+
+  componentDidUpdate() {
+    highlightjs.highlightBlock(this.codeRef.current);
   }
 
   createMarkup(preview) {
@@ -22,7 +32,7 @@ class ViewNote extends React.Component {
         return (
           <div>
             <Link to={str}>Edit</Link>
-            <div dangerouslySetInnerHTML={this.createMarkup(this.props.notes[i].preview)} />
+            <div dangerouslySetInnerHTML={this.createMarkup(this.props.notes[i].preview)} ref={this.codeRef} />
           </div>
         );
       }
