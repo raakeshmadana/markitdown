@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import highlightjs from 'highlight.js';
 
@@ -13,7 +13,9 @@ class ViewNote extends React.Component {
   }
 
   componentDidMount() {
-    highlightjs.highlightBlock(this.codeRef.current);
+    if(this.props.loggedIn) {
+      highlightjs.highlightBlock(this.codeRef.current);
+    }
   }
 
   componentDidUpdate() {
@@ -40,6 +42,9 @@ class ViewNote extends React.Component {
   }
 
   render() {
+    if(!this.props.loggedIn) {
+      return <Redirect to="/" />
+    }
     return (
       <div>
         {this.renderHTML()}
@@ -49,7 +54,8 @@ class ViewNote extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  notes: state.notes
+  notes: state.notes,
+  loggedIn: state.loggedIn
 });
 
 export default connect(mapStateToProps)(ViewNote);

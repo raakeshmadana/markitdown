@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { saveNote, previewNote } from '../actions';
 import { push } from 'connected-react-router';
@@ -39,6 +39,9 @@ class EditNote extends React.Component {
   }
 
   render() {
+    if(!this.props.loggedIn) {
+      return <Redirect to="/" />
+    }
     return (
       <div>
         <button type="button" onClick={this.preview}>Preview</button>
@@ -50,7 +53,8 @@ class EditNote extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  notes: state.notes
+  notes: state.notes,
+  loggedIn: state.loggedIn
 });
 
 export default connect(mapStateToProps)(EditNote);

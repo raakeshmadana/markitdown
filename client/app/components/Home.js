@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getNotes } from '../actions';
 
@@ -11,7 +11,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.notes.length == 0) {
+    if(this.props.notes.length == 0 && this.props.loggedIn) {
       this.props.dispatch(getNotes(Date.now()));
     }
   }
@@ -63,6 +63,9 @@ class Home extends React.Component {
   }
 
   render() {
+    if(!this.props.loggedIn) {
+      return <Redirect to="/" />
+    }
     return (
       <div>
         <div>
@@ -78,7 +81,8 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  notes: state.notes
+  notes: state.notes,
+  loggedIn: state.loggedIn
 });
 
 export default connect(mapStateToProps)(Home);
