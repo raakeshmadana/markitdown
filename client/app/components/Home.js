@@ -11,7 +11,9 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getNotes(Date.now()));
+    if(this.props.notes.length == 0) {
+      this.props.dispatch(getNotes(Date.now()));
+    }
   }
 
   getMoreNotes() {
