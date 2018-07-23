@@ -2,29 +2,22 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: ['whatwg-fetch', 'babel-polyfill', './client/app/', 'webpack-hot-middleware/client'],
+  entry: ['whatwg-fetch', 'babel-polyfill', './client/app/'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, './client/public/'),
-    publicPath: '/'
   },
   module: {
     rules: [{
-        test: /\.less$/,
+        test: /\.css$/,
         use: [{
             loader: "style-loader"
           }, {
             loader: "css-loader", options: {
               sourceMap: true
-            }
-          }, {
-            loader: "less-loader", options: {
-              sourceMap: true,
-              paths: [
-                path.resolve(__dirname, './client/app/styles')
-              ]
             }
           }]
       },
@@ -37,14 +30,19 @@ module.exports = {
       }
     ]
   },
-  devtool: 'inline-source-map',
+  mode: 'production',
+  devtool: 'source-map',
   plugins: [
     new CleanWebpackPlugin(['public']),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'client/app/index.html'),
       filename: 'index.html'
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new UglifyJsPlugin({
+      sourceMap: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
   ]
 };

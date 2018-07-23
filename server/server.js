@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
+const fs = require('fs');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const http = require('http');
@@ -12,9 +13,24 @@ const session = require('express-session');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const config = require('../webpack.config.js');
+const config = require('../webpack.dev.js');
 
-const dbUrl = 'mongodb://' + process.env.dbUser + ':' + process.env.dbPass + '@notesmd-shard-00-00-afbpo.mongodb.net:27017,notesmd-shard-00-01-afbpo.mongodb.net:27017,notesmd-shard-00-02-afbpo.mongodb.net:27017/users?ssl=true&replicaSet=notesmd-shard-0&authSource=admin'
+const app = express();
+
+if(process.env.NODE_ENV === 'development') {
+  const compiler = webpack(config);
+
+  app.use(webpackDevMiddleware(compiler, {
+    publicPath: config.output.publicPath
+  }));
+
+  app.use(webpackHotMiddleware(compiler));
+  app.use(logger('dev'));
+} else {
+  app.use(logger('common', {
+    stream: fs.createWriteStream('./access.log', { flags: 'a' })
+  }));
+}
 
 //Import routes
 const register = require('./routes/register');
@@ -25,18 +41,7 @@ const saveNote = require('./routes/saveNote');
 const getNotes = require('./routes/getNotes');
 const previewNote = require('./routes/previewNote');
 
-const app = express();
-
-const compiler = webpack(config);
-
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: config.output.publicPath
-}));
-
-app.use(webpackHotMiddleware(compiler));
-
 //Main config
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -59,6 +64,8 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 //Database connection
+const dbUrl = 'mongodb://' + process.env.dbUser + ':' + process.env.dbPass + '@notesmd-shard-00-00-afbpo.mongodb.net:27017,notesmd-shard-00-01-afbpo.mongodb.net:27017,notesmd-shard-00-02-afbpo.mongodb.net:27017/users?ssl=true&replicaSet=notesmd-shard-0&authSource=admin'
+
 mongoose.connect(dbUrl);
 
 //Use routes
