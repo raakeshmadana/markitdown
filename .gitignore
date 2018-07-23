@@ -87,5 +87,8 @@ Session.vim
 # auto-generated tag files
 tags
 
+# Dist
+dist/
+client/public/
 
 # End of https://www.gitignore.io/api/linux,vim,node
