@@ -10,18 +10,20 @@ class ViewNote extends React.Component {
     super(props);
     this.renderHTML = this.renderHTML.bind(this);
     this.createMarkup = this.createMarkup.bind(this);
+    this.applySyntaxHighlighting = this.applySyntaxHighlighting.bind(this);
   }
 
   componentDidMount() {
     if(this.props.loggedIn) {
-      let codeBlocks = document.getElementsByTagName('code');
-      for(let i = 0; i < codeBlocks.length; i++) {
-        highlightjs.highlightBlock(codeBlocks[i].parentElement);
-      }
+      this.applySyntaxHighlighting();
     }
   }
 
   componentDidUpdate() {
+    this.applySyntaxHighlighting();
+  }
+
+  applySyntaxHighlighting() {
     let codeBlocks = document.getElementsByTagName('code');
     for(let i = 0; i < codeBlocks.length; i++) {
       highlightjs.highlightBlock(codeBlocks[i].parentElement);
