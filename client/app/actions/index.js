@@ -130,6 +130,33 @@ export const saveNote = (noteId, update) => dispatch => {
   )
 }
 
+export const getPreview = (noteId, update) => dispatch => {
+  return fetch('http://localhost:3000/previewNote', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      note: update
+    }),
+    credentials: 'same-origin'
+  })
+  .then(
+    response => response.ok ? response.json() : null,
+    error => {
+      console.log("Error getting preview");
+    }
+  )
+  .then(
+    json => {
+      dispatch(updateNote(noteId, update, json.html));
+    },
+    error => {
+      console.log("Error parsing json");
+    }
+  )
+}
+
 export const previewNote = (noteId, update) => dispatch => {
   dispatch(saveNote(noteId, update));
   return fetch('http://localhost:3000/previewNote', {

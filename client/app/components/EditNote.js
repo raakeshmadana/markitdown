@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { saveNote, previewNote } from '../actions';
+import { saveNote, previewNote, getPreview } from '../actions';
 import { push } from 'connected-react-router';
 
 class EditNote extends React.Component {
@@ -21,6 +21,7 @@ class EditNote extends React.Component {
 
   update() {
     this.props.dispatch(saveNote(this.props.match.params.id, this.noteRef.current.innerText));
+    this.props.dispatch(getPreview(this.props.match.params.id, this.noteRef.current.innerText));
   }
 
   renderMD() {
