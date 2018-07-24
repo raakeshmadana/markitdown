@@ -8,7 +8,6 @@ import './github.css';
 class ViewNote extends React.Component {
   constructor(props) {
     super(props);
-    this.codeRef = React.createRef();
     this.renderHTML = this.renderHTML.bind(this);
     this.createMarkup = this.createMarkup.bind(this);
   }
@@ -40,7 +39,7 @@ class ViewNote extends React.Component {
         return (
           <div>
             <Link to={str}>Edit</Link>
-            <div dangerouslySetInnerHTML={this.createMarkup(this.props.notes[i].preview)} ref={this.codeRef} />
+            <div dangerouslySetInnerHTML={this.createMarkup(this.props.notes[i].preview)} />
           </div>
         );
       }
