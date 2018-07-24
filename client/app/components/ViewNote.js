@@ -40,6 +40,7 @@ class ViewNote extends React.Component {
         let str = '/note/' + this.props.match.params.id + '/edit';
         return (
           <div>
+            <Link to='/home'>Home</Link>
             <Link to={str}>Edit</Link>
             <div dangerouslySetInnerHTML={this.createMarkup(this.props.notes[i].preview)} />
           </div>
