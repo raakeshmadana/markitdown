@@ -2,6 +2,7 @@ import * as types from '../constants/actionTypes'
 
 const initialState = {
   loggedIn: false,
+  logInError: false,
   notes: []
 }
 
@@ -16,7 +17,12 @@ const reducer = (state = initialState, action) => {
     case types.AUTH_FAILURE:
       return {
         ...state,
-        loggedIn: false
+        logInError: action.logInError
+      }
+    case types.CLEAR_ERROR:
+      return {
+        ...state,
+        logInError: false
       }
     case types.CURRENT_NOTE:
       return {

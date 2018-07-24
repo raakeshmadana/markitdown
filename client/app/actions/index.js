@@ -213,5 +213,10 @@ export const authSuccess = (uname) => ({
 })
 
 export const authFailure = () => ({
-  type: types.AUTH_FAILURE
+  type: types.AUTH_FAILURE,
+  logInError: true
+})
+
+export const clearError = () => ({
+  type: types.CLEAR_ERROR
 })

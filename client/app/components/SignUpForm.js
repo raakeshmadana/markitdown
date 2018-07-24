@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signUp } from '../actions';
+import { signUp, clearError } from '../actions';
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -26,6 +26,12 @@ class SignUpForm extends React.Component {
     this.clearEmailError = this.clearEmailError.bind(this);
     this.clearPasswordError =this.clearPasswordError.bind(this);
     this.submit = this.submit.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.logInError) {
+      this.props.dispatch(clearError());
+    }
   }
 
   setEmail(event) {
@@ -98,6 +104,7 @@ class SignUpForm extends React.Component {
           <input type="password" placeholder="Password" value={this.state.password} onChange={this.setPassword} />
           <span>{this.state.passwordError}</span>
           <input type="submit" value="Sign up" disabled={!this.state.canSubmit}/>
+          <span>{this.props.logInError ? 'User already exists' : ''}</span>
         </form>
         <Link to='/login'>Log In</Link>
       </div>
@@ -106,7 +113,8 @@ class SignUpForm extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  loggedIn: state.loggedIn
+  loggedIn: state.loggedIn,
+  logInError: state.logInError
 });
 
 export default connect(mapStateToProps)(SignUpForm)
