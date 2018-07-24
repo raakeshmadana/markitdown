@@ -31,7 +31,6 @@ class ViewNote extends React.Component {
     for(let i = 0; i < this.props.notes.length; i++) {
       if(this.props.notes[i]._id == this.props.match.params.id) {
         let str = '/note/' + this.props.match.params.id + '/edit';
-        console.log(this.props.notes[i].preview);
         return (
           <div>
             <Link to={str}>Edit</Link>

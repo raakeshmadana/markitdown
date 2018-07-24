@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware, connectRouter } from 'connected-react-router';
 import { Provider } from 'react-redux';
@@ -12,14 +13,12 @@ const history = createBrowserHistory();
 
 const store = createStore(
   connectRouter(history)(reducer),
-  applyMiddleware(
-    thunk,
-    routerMiddleware(history)
+  composeWithDevTools(
+    applyMiddleware(
+      thunk,
+      routerMiddleware(history)
+    )
   )
-);
-
-const unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
 );
 
 ReactDOM.render(
