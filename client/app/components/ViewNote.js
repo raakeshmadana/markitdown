@@ -15,12 +15,18 @@ class ViewNote extends React.Component {
 
   componentDidMount() {
     if(this.props.loggedIn) {
-      highlightjs.highlightBlock(this.codeRef.current);
+      let codeBlocks = document.getElementsByTagName('code');
+      for(let i = 0; i < codeBlocks.length; i++) {
+        highlightjs.highlightBlock(codeBlocks[i].parentElement);
+      }
     }
   }
 
   componentDidUpdate() {
-    highlightjs.highlightBlock(this.codeRef.current);
+    let codeBlocks = document.getElementsByTagName('code');
+    for(let i = 0; i < codeBlocks.length; i++) {
+      highlightjs.highlightBlock(codeBlocks[i].parentElement);
+    }
   }
 
   createMarkup(preview) {
