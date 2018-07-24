@@ -38,12 +38,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         notes: [
-          ...state.notes,
           {
             _id: action.id,
             timestamp: action.timestamp,
             note: ''
-          }
+          },
+          ...state.notes
         ]
       }
     case types.UPDATE_NOTE:
