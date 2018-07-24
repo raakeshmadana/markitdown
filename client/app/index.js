@@ -31,7 +31,7 @@ const store = createStore(
   )
 );
 
-const persistor = persistStore(store);
+export const persistor = persistStore(store);
 
 ReactDOM.render(
   (

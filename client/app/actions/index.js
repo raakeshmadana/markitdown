@@ -1,5 +1,6 @@
 import * as types from '../constants/actionTypes'
 import { push } from 'connected-react-router'
+import { persistor } from '../index.js'
 
 export const signUp = (uname, pwd) => dispatch => {
   return fetch('http://localhost:3000/register' , {
@@ -68,6 +69,7 @@ export const logOut = () => dispatch => {
     response => {
       if(response.ok) {
         console.log("log out success");
+        persistor.purge();
         dispatch(resetState());
         dispatch(push('/'));
       }
