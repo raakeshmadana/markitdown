@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logIn } from '../actions';
 
@@ -86,6 +86,9 @@ class LogInForm extends React.Component {
   }
 
   render() {
+    if(this.props.loggedIn) {
+      return <Redirect to="/home" />
+    }
     return (
       <div>
         <h3>Log In</h3>
@@ -102,4 +105,8 @@ class LogInForm extends React.Component {
   }
 }
 
-export default connect()(LogInForm)
+const mapStateToProps = (state) => ({
+  loggedIn: state.loggedIn
+});
+
+export default connect(mapStateToProps)(LogInForm)

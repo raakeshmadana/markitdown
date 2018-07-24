@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signUp } from '../actions';
 
@@ -86,6 +86,9 @@ class SignUpForm extends React.Component {
   }
 
   render() {
+    if(this.props.loggedIn) {
+      return <Redirect to="/home" />
+    }
     return (
       <div>
         <h3>Sign Up</h3>
@@ -102,4 +105,8 @@ class SignUpForm extends React.Component {
   }
 }
 
-export default connect()(SignUpForm)
+const mapStateToProps = (state) => ({
+  loggedIn: state.loggedIn
+});
+
+export default connect(mapStateToProps)(SignUpForm)
