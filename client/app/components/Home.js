@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getNotes } from '../actions';
+import Note from './Note';
 
 class Home extends React.Component {
   constructor(props){
@@ -22,40 +23,7 @@ class Home extends React.Component {
   
   renderNotes() {
     const notes = this.props.notes.map(
-      note => {
-        let link = 'note/' + note._id + '/view';
-        let date = new Date(note.timestamp);
-        if(note.note.length == 0) {
-          return (
-            <div>
-              <Link to={link}><i>Empty Note</i></Link>
-              <div>{date.toDateString() + " " + date.toLocaleTimeString()}</div>
-              <hr/>
-            </div>
-          )
-        } else {
-          let lines = note.note.split("\n");
-          let ellipsis = "...";
-          const slicedLines = lines.map(
-            line => {
-              if(line.length > 72) {
-                return line.slice(0, 71) + ellipsis;
-              } else {
-                return line;
-              }
-            }
-          );
-          return (
-            <div>
-              <Link to={link}>{slicedLines[0]}</Link>
-              <div>{slicedLines[1]}</div>
-              <div>{slicedLines[2]}</div>
-              <div>{date.toDateString() + " " + date.toLocaleTimeString()}</div>
-              <hr/>
-            </div>
-          )
-        }
-      }
+      note => <Note key={note._id} id={note._id} note={note.note} timestamp={note.timestamp} />
     );
     return (
       <div>{notes}</div>
