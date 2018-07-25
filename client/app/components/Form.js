@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signUp, clearError } from '../actions';
+import { signUp, logIn, clearError } from '../actions';
 
-class SignUpForm extends React.Component {
+class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -88,7 +88,11 @@ class SignUpForm extends React.Component {
 
   submit(event) {
     event.preventDefault();
-    this.props.dispatch(signUp(this.state.email, this.state.password));
+    if(this.props.signUp) {
+      this.props.dispatch(signUp(this.state.email, this.state.password));
+    } else {
+      this.props.dispatch(logIn(this.state.email, this.state.password));
+    }
   }
 
   render() {
@@ -97,16 +101,20 @@ class SignUpForm extends React.Component {
     }
     return (
       <div>
-        <h3>Sign Up</h3>
+        <h3>{this.props.signUp ? "Sign Up" : "Log In"}</h3>
         <form onSubmit={this.submit}>
           <input type="text" placeholder="Email" value={this.state.email} onChange={this.setEmail} />
           <span>{this.state.emailError}</span>
           <input type="password" placeholder="Password" value={this.state.password} onChange={this.setPassword} />
           <span>{this.state.passwordError}</span>
-          <input type="submit" value="Sign up" disabled={!this.state.canSubmit}/>
-          <span>{this.props.logInError ? 'User already exists' : ''}</span>
+          <input type="submit" value={this.props.signUp ? "Sign Up" : "Log In"} disabled={!this.state.canSubmit}/>
+          {
+            this.props.signUp ?
+              (<span>{this.props.logInError ? 'User already exists' : ''}</span>) :
+              (<span>{this.props.logInError ? 'Credentials Incorrect' : ''}</span>)
+          }
         </form>
-        <Link to='/login'>Log In</Link>
+        {this.props.signUp ? (<Link to='/login'>Log In</Link>) : (<Link to='/'>Sign Up</Link>)}
       </div>
     );
   }
@@ -117,4 +125,4 @@ const mapStateToProps = (state) => ({
   logInError: state.logInError
 });
 
-export default connect(mapStateToProps)(SignUpForm)
+export default connect(mapStateToProps)(Form);
