@@ -8,6 +8,7 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      signUp: true,
       email: '',
       password: '',
       canSubmit: false,
@@ -17,6 +18,7 @@ class Form extends React.Component {
       passwordError: ''
     };
 
+    this.toggleForm = this.toggleForm.bind(this);
     this.setEmail = this.setEmail.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.disableButton = this.disableButton.bind(this);
@@ -32,6 +34,20 @@ class Form extends React.Component {
     if (this.props.logInError) {
       this.props.dispatch(clearError());
     }
+  }
+
+  toggleForm() {
+    this.props.dispatch(clearError());
+    this.setState({
+      signUp: !this.state.signUp,
+      email: '',
+      password: '',
+      canSubmit: false,
+      emailTouched: false,
+      passwordTouched: false,
+      emailError: '',
+      passwordError: ''
+    });
   }
 
   setEmail(event) {
@@ -88,7 +104,7 @@ class Form extends React.Component {
 
   submit(event) {
     event.preventDefault();
-    if(this.props.signUp) {
+    if(this.state.signUp) {
       this.props.dispatch(signUp(this.state.email, this.state.password));
     } else {
       this.props.dispatch(logIn(this.state.email, this.state.password));
@@ -101,7 +117,11 @@ class Form extends React.Component {
     }
     return (
       <div>
-        <h3>{this.props.signUp ? "Sign Up" : "Log In"}</h3>
+        {
+          this.state.signUp ?
+            (<h3>Sign Up / <button type="button" onClick={this.toggleForm} className="btn btn-link"><h3>Log In</h3></button></h3>) :
+            (<h3><button type="button" onClick={this.toggleForm} className="btn btn-link"><h3>Sign Up</h3></button> / Log In</h3>)
+        }
         <form onSubmit={this.submit}>
           <div className="form-group">
             <input type="text" placeholder="Email" value={this.state.email} onChange={this.setEmail} className="form-control" />
@@ -111,14 +131,13 @@ class Form extends React.Component {
             <input type="password" placeholder="Password" value={this.state.password} onChange={this.setPassword} className="form-control" />
             <small className="form-text"><em>{this.state.passwordError}</em></small>
           </div>
-          <input type="submit" value={this.props.signUp ? "Sign Up" : "Log In"} disabled={!this.state.canSubmit} className="btn btn-primary" />
+          <input type="submit" value={this.state.signUp ? "Sign Up" : "Log In"} disabled={!this.state.canSubmit} className="btn btn-primary" />
           {
-            this.props.signUp ?
+            this.state.signUp ?
               (<small className="form-text"><em>{this.props.logInError ? 'User already exists' : ''}</em></small>) :
               (<small className="form-text"><em>{this.props.logInError ? 'Credentials Incorrect' : ''}</em></small>)
           }
         </form>
-        {this.props.signUp ? (<Link to='/login'>Log In</Link>) : (<Link to='/'>Sign Up</Link>)}
       </div>
     );
   }

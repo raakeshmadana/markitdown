@@ -12,8 +12,7 @@ import ViewNote from './ViewNote'
 const App = ({ history }) => (
   <ConnectedRouter history={history}>
     <div>
-      <Route exact path='/' render={(props) => <Form {...props} signUp={true} />} />
-      <Route exact path='/login' render={(props) => <Form {...props} signUp={false} />} />
+      <Route exact path='/' component={Form} />
       <Route exact path='/logout' component={LogOut} />
       <Route exact path='/home' component={Home} />
       <Route exact path='/note/new' component={NewNote} />
