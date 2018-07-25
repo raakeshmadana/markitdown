@@ -103,15 +103,19 @@ class Form extends React.Component {
       <div>
         <h3>{this.props.signUp ? "Sign Up" : "Log In"}</h3>
         <form onSubmit={this.submit}>
-          <input type="text" placeholder="Email" value={this.state.email} onChange={this.setEmail} />
-          <span>{this.state.emailError}</span>
-          <input type="password" placeholder="Password" value={this.state.password} onChange={this.setPassword} />
-          <span>{this.state.passwordError}</span>
-          <input type="submit" value={this.props.signUp ? "Sign Up" : "Log In"} disabled={!this.state.canSubmit}/>
+          <div className="form-group">
+            <input type="text" placeholder="Email" value={this.state.email} onChange={this.setEmail} className="form-control" />
+            <small className="form-text"><em>{this.state.emailError}</em></small>
+          </div>
+          <div className="form-group">
+            <input type="password" placeholder="Password" value={this.state.password} onChange={this.setPassword} className="form-control" />
+            <small className="form-text"><em>{this.state.passwordError}</em></small>
+          </div>
+          <input type="submit" value={this.props.signUp ? "Sign Up" : "Log In"} disabled={!this.state.canSubmit} className="btn btn-primary" />
           {
             this.props.signUp ?
-              (<span>{this.props.logInError ? 'User already exists' : ''}</span>) :
-              (<span>{this.props.logInError ? 'Credentials Incorrect' : ''}</span>)
+              (<small className="form-text"><em>{this.props.logInError ? 'User already exists' : ''}</em></small>) :
+              (<small className="form-text"><em>{this.props.logInError ? 'Credentials Incorrect' : ''}</em></small>)
           }
         </form>
         {this.props.signUp ? (<Link to='/login'>Log In</Link>) : (<Link to='/'>Sign Up</Link>)}

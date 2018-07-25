@@ -38,11 +38,11 @@ class Home extends React.Component {
       <div>
         <div>
           <h1>Your notes</h1>
-          <Link to='/note/new'>New Note</Link>
-          <Link to='logout'>Logout</Link>
+          <Link to='/note/new' className="btn btn-primary">New Note</Link>
+          <Link to='logout'className="btn btn-primary">Logout</Link>
         </div>
         {this.renderNotes()}
-        <button type="button" onClick={this.getMoreNotes}>Get more</button>
+        <button type="button" onClick={this.getMoreNotes} className="btn btn-primary">Get more</button>
       </div>
     );
   }

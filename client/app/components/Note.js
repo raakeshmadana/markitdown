@@ -27,9 +27,9 @@ const Note = (props) => {
     return (
       <div>
         <Link to={link}>{slicedLines[0]}</Link>
-        <div>{slicedLines[1]}</div>
-        <div>{slicedLines[2]}</div>
-        <div>{date.toDateString() + " " + date.toLocaleTimeString()}</div>
+        <p>{slicedLines[1]}</p>
+        <p>{slicedLines[2]}</p>
+        <p><small>{date.toDateString() + " " + date.toLocaleTimeString()}</small></p>
         <hr/>
       </div>
     )

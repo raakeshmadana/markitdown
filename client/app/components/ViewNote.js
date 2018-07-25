@@ -41,7 +41,7 @@ class ViewNote extends React.Component {
         return (
           <div>
             <Link to='/home'>Home</Link>
-            <Link to={str}>Edit</Link>
+            <Link to={str} className="btn btn-primary">Edit</Link>
             <div dangerouslySetInnerHTML={this.createMarkup(this.props.notes[i].preview)} />
           </div>
         );

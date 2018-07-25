@@ -46,8 +46,8 @@ class EditNote extends React.Component {
     return (
       <div>
         <Link to='/home'>Home</Link>
-        <button type="button" onClick={this.preview}>Preview</button>
-        <button type="button" onClick={this.update}>Save</button>
+        <button type="button" onClick={this.preview} className="btn btn-primary">Preview</button>
+        <button type="button" onClick={this.update} className="btn btn-primary">Save</button>
         {this.renderMD()}
       </div>
     );
