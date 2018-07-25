@@ -62,7 +62,7 @@ class ViewNote extends React.Component {
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
               <Link to='/note/new' className="nav-item nav-link">New Note</Link>
-              <Link to='/logout'className="nav-item nav-link">Logout</Link>
+              <Link to='/logout' className="nav-item nav-link">Logout</Link>
             </div>
           </div>
         </nav>
