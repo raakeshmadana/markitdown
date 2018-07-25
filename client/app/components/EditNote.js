@@ -31,7 +31,7 @@ class EditNote extends React.Component {
     for(let i = 0; i < this.props.notes.length; i++) {
       if(this.props.notes[i]._id == this.props.match.params.id) {
         return (
-          <div contentEditable="true" style={divStyle} ref={this.noteRef}>
+          <div id="edit" contentEditable="true" style={divStyle} ref={this.noteRef}>
             {this.props.notes[i].note}
           </div>
         );
@@ -45,7 +45,18 @@ class EditNote extends React.Component {
     }
     return (
       <div>
-        <Link to='/home'>Home</Link>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <Link to="/" className="navbar-brand mb-0 h1">Notes</Link>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="navbar-nav">
+              <Link to='/note/new' className="nav-item nav-link">New Note</Link>
+              <Link to='/logout'className="nav-item nav-link">Logout</Link>
+            </div>
+          </div>
+        </nav>
         <button type="button" onClick={this.preview} className="btn btn-primary">Preview</button>
         <button type="button" onClick={this.update} className="btn btn-primary">Save</button>
         {this.renderMD()}

@@ -116,7 +116,7 @@ class Form extends React.Component {
       return <Redirect to="/home" />
     }
     return (
-      <div>
+      <div id="form">
         {
           this.state.signUp ?
             (<h3>Sign Up / <button type="button" onClick={this.toggleForm} className="btn btn-link"><h3>Log In</h3></button></h3>) :

@@ -26,7 +26,7 @@ class Home extends React.Component {
       note => <Note key={note._id} id={note._id} note={note.note} timestamp={note.timestamp} />
     );
     return (
-      <div>{notes}</div>
+      <div id="notes">{notes}</div>
     );
   }
 
@@ -36,11 +36,18 @@ class Home extends React.Component {
     }
     return (
       <div>
-        <div>
-          <h1>Your notes</h1>
-          <Link to='/note/new' className="btn btn-primary">New Note</Link>
-          <Link to='logout'className="btn btn-primary">Logout</Link>
-        </div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <Link to="/" className="navbar-brand mb-0 h1">Notes</Link>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="navbar-nav">
+              <Link to='/note/new' className="nav-item nav-link">New Note</Link>
+              <Link to='/logout' className="nav-item nav-link">Logout</Link>
+            </div>
+          </div>
+        </nav>
         {this.renderNotes()}
         <button type="button" onClick={this.getMoreNotes} className="btn btn-primary">Get more</button>
       </div>
