@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getNotes } from '../../actions';
-import Note from '../Note/Note.js';
+import Note from '../Note/Note';
 import './Notes.css';
 
 class Notes extends React.Component {
