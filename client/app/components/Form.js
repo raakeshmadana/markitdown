@@ -114,7 +114,7 @@ class Form extends React.Component {
 
   render() {
     if(this.props.loggedIn) {
-      return <Redirect to="/home" />
+      return <Redirect to="/notes" />
     }
     return (
       <div id="home">
