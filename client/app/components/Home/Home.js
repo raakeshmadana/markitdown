@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Form from '../Form';
 import './Home.css';
 
@@ -24,4 +25,8 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+  loggedIn: state.loggedIn
+});
+
+export default connect(mapStateToProps)(Home);
