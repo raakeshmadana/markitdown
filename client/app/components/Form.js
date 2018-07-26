@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signUp, logIn, clearError } from '../actions';
+import './style.css';
 
 class Form extends React.Component {
   constructor(props) {
@@ -116,28 +117,37 @@ class Form extends React.Component {
       return <Redirect to="/home" />
     }
     return (
-      <div id="form">
-        {
-          this.state.signUp ?
-            (<h3>Sign Up / <button type="button" onClick={this.toggleForm} className="btn btn-link"><h3>Log In</h3></button></h3>) :
-            (<h3><button type="button" onClick={this.toggleForm} className="btn btn-link"><h3>Sign Up</h3></button> / Log In</h3>)
-        }
-        <form onSubmit={this.submit}>
-          <div className="form-group">
-            <input type="text" placeholder="Email" value={this.state.email} onChange={this.setEmail} className="form-control" />
-            <small className="form-text"><em>{this.state.emailError}</em></small>
-          </div>
-          <div className="form-group">
-            <input type="password" placeholder="Password" value={this.state.password} onChange={this.setPassword} className="form-control" />
-            <small className="form-text"><em>{this.state.passwordError}</em></small>
-          </div>
-          <input type="submit" value={this.state.signUp ? "Sign Up" : "Log In"} disabled={!this.state.canSubmit} className="btn btn-primary" />
+      <div id="home">
+        <div id="head">
+          <h1>Notes</h1>
+          <big>Take notes using Markdown</big>
+        </div>
+        <div>
+          <hr/>
           {
             this.state.signUp ?
-              (<small className="form-text"><em>{this.props.logInError ? 'User already exists' : ''}</em></small>) :
-              (<small className="form-text"><em>{this.props.logInError ? 'Credentials Incorrect' : ''}</em></small>)
+              (<h3>Sign Up / <button type="button" onClick={this.toggleForm} className="btn btn-link"><h3>Log In</h3></button></h3>) :
+              (<h3><button type="button" onClick={this.toggleForm} className="btn btn-link"><h3>Sign Up</h3></button> / Log In</h3>)
           }
-        </form>
+        </div>
+        <div id="form">
+          <form onSubmit={this.submit}>
+            <div className="form-group">
+              <input type="text" placeholder="Email" value={this.state.email} onChange={this.setEmail} className="form-control" />
+              <small className="form-text"><em>{this.state.emailError}</em></small>
+            </div>
+            <div className="form-group">
+              <input type="password" placeholder="Password" value={this.state.password} onChange={this.setPassword} className="form-control" />
+              <small className="form-text"><em>{this.state.passwordError}</em></small>
+            </div>
+            <input type="submit" value={this.state.signUp ? "Sign Up" : "Log In"} disabled={!this.state.canSubmit} className="btn btn-primary" />
+            {
+              this.state.signUp ?
+                (<small className="form-text"><em>{this.props.logInError ? 'User already exists' : ''}</em></small>) :
+                (<small className="form-text"><em>{this.props.logInError ? 'Credentials Incorrect' : ''}</em></small>)
+            }
+          </form>
+        </div>
       </div>
     );
   }
