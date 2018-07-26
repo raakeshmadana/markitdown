@@ -19,7 +19,7 @@ export const signUp = (uname, pwd) => dispatch => {
       if(response.ok) {
         console.log("sign up success");
         dispatch(authSuccess(uname));
-        dispatch(push('/home'));
+        dispatch(push('/notes'));
       } else {
         dispatch(authFailure());
       }
@@ -48,7 +48,7 @@ export const logIn = (uname, pwd) => dispatch => {
       if(response.ok) {
         console.log("log in success");
         dispatch(authSuccess(uname));
-        dispatch(push('/home'));
+        dispatch(push('/notes'));
       } else {
         dispatch(authFailure());
       }

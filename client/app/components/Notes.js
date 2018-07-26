@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getNotes } from '../actions';
 import Note from './Note';
 
-class Home extends React.Component {
+class Notes extends React.Component {
   constructor(props){
     super(props);
     this.getMoreNotes = this.getMoreNotes.bind(this);
@@ -60,4 +60,4 @@ const mapStateToProps = (state) => ({
   loggedIn: state.loggedIn
 });
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Notes);
