@@ -113,6 +113,12 @@ class Form extends React.Component {
   render() {
     return (
       <div id="form">
+        <hr/>
+        {
+          this.state.signUp ?
+            (<h3>Sign Up / <button type="button" onClick={this.toggleForm} className="btn btn-link"><h3>Log In</h3></button></h3>) :
+            (<h3><button type="button" onClick={this.toggleForm} className="btn btn-link"><h3>Sign Up</h3></button> / Log In</h3>)
+        }
         <form onSubmit={this.submit}>
           <div className="form-group">
             <input type="text" placeholder="Email" value={this.state.email} onChange={this.setEmail} className="form-control" />
