@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getNotes } from '../actions';
 import Note from './Note';
+import './Notes.css';
 
 class Notes extends React.Component {
   constructor(props){

@@ -1,0 +1,12 @@
+.note {
+  margin-bottom: 20px;
+}
+
+.note > .link {
+  font-weight: bold;
+}
+
+.note > .time {
+  font-style: italic;
+  font-weight: bold;
+}

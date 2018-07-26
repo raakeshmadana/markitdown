@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Note.css';
 
 const Note = (props) => {
   let link = 'note/' + props.id + '/view';
   let date = new Date(props.timestamp);
   if(props.note.length == 0) {
     return (
-      <div>
-        <Link to={link}><i>Empty Note</i></Link>
-        <div>{date.toDateString() + " " + date.toLocaleTimeString()}</div>
+      <div className="note">
+        <Link to={link} className="link"><big><i>Empty Note</i></big></Link>
+        <small className="time">{date.toDateString() + " " + date.toLocaleTimeString()}</small>
         <hr/>
       </div>
     )
@@ -25,11 +26,11 @@ const Note = (props) => {
       }
     );
     return (
-      <div>
-        <Link to={link}>{slicedLines[0]}</Link>
+      <div className="note">
+        <Link to={link} className="link"><big>{slicedLines[0]}</big></Link>
         <p>{slicedLines[1]}</p>
         <p>{slicedLines[2]}</p>
-        <p><small>{date.toDateString() + " " + date.toLocaleTimeString()}</small></p>
+        <small className="time">{date.toDateString() + " " + date.toLocaleTimeString()}</small>
         <hr/>
       </div>
     )
