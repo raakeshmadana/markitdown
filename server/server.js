@@ -40,6 +40,7 @@ const addNote = require('./routes/addNote');
 const saveNote = require('./routes/saveNote');
 const getNotes = require('./routes/getNotes');
 const previewNote = require('./routes/previewNote');
+const deleteNote = require('./routes/deleteNote');
 
 //Main config
 app.use(bodyParser.json());
@@ -76,6 +77,7 @@ app.use('/addNote', addNote);
 app.use('/saveNote', saveNote);
 app.use('/getnotes', getNotes);
 app.use('/previewNote', previewNote);
+app.use('/deletenote', deleteNote);
 
 app.get('*', function(req, res) {
   res.sendFile(path.resolve(__dirname, '../client/public/index.html'));

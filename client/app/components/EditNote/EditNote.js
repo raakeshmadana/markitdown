@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { saveNote, previewNote, getPreview } from '../../actions';
+import { saveNote, previewNote, getPreview, deleteNoteFromServer } from '../../actions';
 import { push } from 'connected-react-router';
 import './EditNote.css';
 
@@ -12,6 +12,7 @@ class EditNote extends React.Component {
     this.noteRef = React.createRef();
     this.preview = this.preview.bind(this);
     this.update = this.update.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
     this.renderMD = this.renderMD.bind(this);
     setInterval(this.updateServer, 30000);
   }
@@ -23,6 +24,10 @@ class EditNote extends React.Component {
   update() {
     this.props.dispatch(saveNote(this.props.match.params.id, this.noteRef.current.innerText));
     this.props.dispatch(getPreview(this.props.match.params.id, this.noteRef.current.innerText));
+  }
+
+  deleteNote() {
+    this.props.dispatch(deleteNoteFromServer(this.props.match.params.id));
   }
 
   renderMD() {
@@ -57,6 +62,7 @@ class EditNote extends React.Component {
         </nav>
         <button type="button" onClick={this.preview} className="btn btn-primary">Preview</button>
         <button type="button" onClick={this.update} className="btn btn-primary">Save</button>
+        <button type="button" onClick={this.deleteNote} className="btn btn-danger">Delete</button>
         {this.renderMD()}
       </div>
     );

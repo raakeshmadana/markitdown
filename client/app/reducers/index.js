@@ -46,7 +46,7 @@ const reducer = (state = initialState, action) => {
           ...state.notes
         ]
       }
-    case types.UPDATE_NOTE:
+    case types.UPDATE_NOTE: {
       let obj = { ...state };
       for(let i = 0; i < obj.notes.length; i++) {
         if(obj.notes[i]._id == action.noteId) {
@@ -55,6 +55,16 @@ const reducer = (state = initialState, action) => {
         }
       }
       return obj;
+    }
+    case types.DELETE_NOTE: {
+      let obj = { ...state };
+      for(let i = 0; i < obj.notes.length; i++) {
+        if(obj.notes[i]._id == action.noteId) {
+          obj.notes.splice(i, 1);
+        }
+      }
+      return obj;
+    }
     case types.RESET_STATE:
       return initialState
     default:

@@ -207,6 +207,31 @@ export const getNotes = (timestamp) => dispatch => {
   )
 }
 
+export const deleteNoteFromServer = (noteId) => dispatch => {
+  return fetch('http://localhost:3000/deletenote/' + noteId, {
+    method: 'GET',
+    credentials: 'same-origin'
+  })
+  .then(
+    response => {
+      if(response.ok) {
+        dispatch(deleteNoteFromStore(noteId));
+        dispatch(push('/notes'));
+      } else {
+        console.log("Error deleting note");
+      }
+    },
+    error => {
+      console.log("Error updating note");
+    }
+  )
+}
+
+export const deleteNoteFromStore = (noteId) => ({
+  type: types.DELETE_NOTE,
+  noteId
+})
+
 export const updateNote = (noteId, update, preview) => ({
   type: types.UPDATE_NOTE,
   noteId,

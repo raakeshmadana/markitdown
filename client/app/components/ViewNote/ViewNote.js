@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { deleteNoteFromServer } from '../../actions';
 import highlightjs from 'highlight.js';
 import './ViewNote.css';
 
 class ViewNote extends React.Component {
   constructor(props) {
     super(props);
+    this.deleteNote = this.deleteNote.bind(this);
     this.renderHTML = this.renderHTML.bind(this);
     this.createMarkup = this.createMarkup.bind(this);
     this.applySyntaxHighlighting = this.applySyntaxHighlighting.bind(this);
@@ -21,6 +23,10 @@ class ViewNote extends React.Component {
 
   componentDidUpdate() {
     this.applySyntaxHighlighting();
+  }
+
+  deleteNote() {
+    this.props.dispatch(deleteNoteFromServer(this.props.match.params.id));
   }
 
   applySyntaxHighlighting() {
@@ -41,6 +47,7 @@ class ViewNote extends React.Component {
         return (
           <div>
             <Link to={str} className="btn btn-primary">Edit</Link>
+            <button type="button" onClick={this.deleteNote} className="btn btn-danger">Delete</button>
             <div id="preview" dangerouslySetInnerHTML={this.createMarkup(this.props.notes[i].preview)} />
           </div>
         );

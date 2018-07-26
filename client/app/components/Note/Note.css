@@ -10,3 +10,7 @@
   font-style: italic;
   font-weight: bold;
 }
+
+.note .delete {
+  color: red;
+}
