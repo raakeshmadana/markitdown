@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import highlightjs from 'highlight.js';
-import './github.css';
+import './ViewNote.css';
 
 class ViewNote extends React.Component {
   constructor(props) {

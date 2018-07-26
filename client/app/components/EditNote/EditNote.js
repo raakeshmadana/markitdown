@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { saveNote, previewNote, getPreview } from '../actions';
 import { push } from 'connected-react-router';
+import './EditNote.css';
 
 class EditNote extends React.Component {
   constructor(props) {
@@ -25,13 +26,10 @@ class EditNote extends React.Component {
   }
 
   renderMD() {
-    const divStyle = {
-      whiteSpace: "pre-wrap"
-    };
     for(let i = 0; i < this.props.notes.length; i++) {
       if(this.props.notes[i]._id == this.props.match.params.id) {
         return (
-          <div id="edit" contentEditable="true" style={divStyle} ref={this.noteRef}>
+          <div id="edit" contentEditable="true" ref={this.noteRef} className="border">
             {this.props.notes[i].note}
           </div>
         );

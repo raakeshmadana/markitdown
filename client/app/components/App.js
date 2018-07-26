@@ -6,7 +6,7 @@ import Home from './Home/Home'
 import Notes from './Notes/Notes'
 import LogOut from './LogOut'
 import NewNote from './NewNote'
-import EditNote from './EditNote'
+import EditNote from './EditNote/EditNote'
 import ViewNote from './ViewNote/ViewNote'
 
 const App = ({ history }) => (
