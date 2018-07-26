@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { saveNote, previewNote, getPreview } from '../actions';
+import { saveNote, previewNote, getPreview } from '../../actions';
 import { push } from 'connected-react-router';
 import './EditNote.css';
 
