@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-const fs = require('fs');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const http = require('http');
@@ -26,10 +25,6 @@ if(process.env.NODE_ENV === 'development') {
 
   app.use(webpackHotMiddleware(compiler));
   app.use(logger('dev'));
-} else {
-  app.use(logger('common', {
-    stream: fs.createWriteStream('./access.log', { flags: 'a' })
-  }));
 }
 
 //Import routes
@@ -65,9 +60,7 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 //Database connection
-const dbUrl = 'mongodb://' + process.env.dbUser + ':' + process.env.dbPass + '@notesmd-shard-00-00-afbpo.mongodb.net:27017,notesmd-shard-00-01-afbpo.mongodb.net:27017,notesmd-shard-00-02-afbpo.mongodb.net:27017/users?ssl=true&replicaSet=notesmd-shard-0&authSource=admin'
-
-mongoose.connect(dbUrl);
+mongoose.connect(process.env.usersDbUrl);
 
 //Use routes
 app.use('/register', register);

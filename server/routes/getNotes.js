@@ -7,9 +7,7 @@ const marked = require('marked').setOptions({
   smartlists: true
 });
 
-const dbUrl = 'mongodb://' + process.env.dbUser + ':' + process.env.dbPass + '@notesmd-shard-00-00-afbpo.mongodb.net:27017,notesmd-shard-00-01-afbpo.mongodb.net:27017,notesmd-shard-00-02-afbpo.mongodb.net:27017/notes?ssl=true&replicaSet=notesmd-shard-0&authSource=admin'
-
-const db = monk(dbUrl);
+const db = monk(process.env.notesDbUrl);
 
 router.get('/:timestamp', function(req, res) {
   const user = db.get(req.session.passport.user)
@@ -27,7 +25,6 @@ router.get('/:timestamp', function(req, res) {
             return note;
           }
         );
-        console.log(notes);
         res.json(notes);
       }
     );
