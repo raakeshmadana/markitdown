@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   entry: ['whatwg-fetch', 'babel-polyfill', './client/app/'],
@@ -14,7 +16,7 @@ module.exports = {
     rules: [{
         test: /\.css$/,
         use: [{
-            loader: "style-loader"
+            loader: MiniCssExtractPlugin.loader
           }, {
             loader: "css-loader", options: {
               sourceMap: true
@@ -41,6 +43,8 @@ module.exports = {
     new UglifyJsPlugin({
       sourceMap: true
     }),
+    new MiniCssExtractPlugin(),
+    new OptimizeCssAssetsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     })
