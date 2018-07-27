@@ -4,8 +4,7 @@
   "description": "A web application to write notes using Markdown",
   "main": "./server/server.js",
   "scripts": {
-    "test": "jest",
-    "test:watch": "npm test -- --watch",
+    "now-build": "echo 'Built on Travis CI'",
     "build:server": "babel ./server -d dist",
     "build:client": "webpack -p --config webpack.prod.js --progress",
     "build": "npm run build:server && npm run build:client",

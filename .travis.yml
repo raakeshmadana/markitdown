@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "node"
+cache:
+  directories:
+    - "node_modules"
+script: npm run build
+before_deploy: npm install now --no-save
+deploy:
+  - provider: script
+    script: now --token $NOW_TOKEN --public 
+    skip_cleanup: true
+    on:
+      all_branches: true
+      master: false
+  - provider: script
+    script: now --token $NOW_TOKEN --public && now alias --token $NOW_TOKEN --public
+    skip_cleanup: true
+    on:
+      master: true
