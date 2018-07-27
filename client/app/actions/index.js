@@ -3,7 +3,7 @@ import { push } from 'connected-react-router'
 import { persistor } from '../index.js'
 
 export const signUp = (uname, pwd) => dispatch => {
-  return fetch('http://localhost:3000/register' , {
+  return fetch('https://markitdown.now.sh/register' , {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ export const signUp = (uname, pwd) => dispatch => {
 }
 
 export const logIn = (uname, pwd) => dispatch => {
-  return fetch('http://localhost:3000/login', {
+  return fetch('https://markitdown.now.sh/login', {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ export const logIn = (uname, pwd) => dispatch => {
 }
 
 export const logOut = () => dispatch => {
-  return fetch('http://localhost:3000/logout', {
+  return fetch('https://markitdown.now.sh/logout', {
     method: 'GET',
     credentials: 'same-origin'
   })
@@ -81,7 +81,7 @@ export const logOut = () => dispatch => {
 }
 
 export const newNote = () => dispatch => {
-  return fetch('http://localhost:3000/addNote', {
+  return fetch('https://markitdown.now.sh/addNote', {
     method: 'GET',
     credentials: 'same-origin'
   })
@@ -107,7 +107,7 @@ export const newNote = () => dispatch => {
 }
 
 export const saveNote = (noteId, update) => dispatch => {
-  return fetch('http://localhost:3000/saveNote', {
+  return fetch('https://markitdown.now.sh/saveNote', {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json'
@@ -131,7 +131,7 @@ export const saveNote = (noteId, update) => dispatch => {
 }
 
 export const getPreview = (noteId, update) => dispatch => {
-  return fetch('http://localhost:3000/previewNote', {
+  return fetch('https://markitdown.now.sh/previewNote', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -159,7 +159,7 @@ export const getPreview = (noteId, update) => dispatch => {
 
 export const previewNote = (noteId, update) => dispatch => {
   dispatch(saveNote(noteId, update));
-  return fetch('http://localhost:3000/previewNote', {
+  return fetch('https://markitdown.now.sh/previewNote', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -187,7 +187,7 @@ export const previewNote = (noteId, update) => dispatch => {
 }
 
 export const getNotes = (timestamp) => dispatch => {
-  return fetch('http://localhost:3000/getnotes/' + timestamp, {
+  return fetch('https://markitdown.now.sh/getnotes/' + timestamp, {
     method: 'GET',
     credentials: 'same-origin'
   })
@@ -208,7 +208,7 @@ export const getNotes = (timestamp) => dispatch => {
 }
 
 export const deleteNoteFromServer = (noteId) => dispatch => {
-  return fetch('http://localhost:3000/deletenote/' + noteId, {
+  return fetch('https://markitdown.now.sh/deletenote/' + noteId, {
     method: 'GET',
     credentials: 'same-origin'
   })
