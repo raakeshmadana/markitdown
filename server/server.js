@@ -45,7 +45,7 @@ app.use(express.static(path.resolve(__dirname, '../client/public')));
 
 //Session config
 app.use(session({ 
-  secret: process.env.secret,
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
@@ -60,7 +60,7 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 //Database connection
-mongoose.connect(process.env.usersDbUrl);
+mongoose.connect(process.env.USERS_DB);
 
 //Use routes
 app.use('/register', register);

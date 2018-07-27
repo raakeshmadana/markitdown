@@ -3,7 +3,7 @@ const router = express.Router();
 const ObjectID = require('mongodb').ObjectID;
 const monk = require('monk');
 
-const db = monk(process.env.notesDbUrl);
+const db = monk(process.env.NOTES_DB);
 
 router.get('/:id', function(req, res) {
   const user = db.get(req.session.passport.user);

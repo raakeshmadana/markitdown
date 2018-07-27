@@ -7,7 +7,7 @@ const marked = require('marked').setOptions({
   smartlists: true
 });
 
-const db = monk(process.env.notesDbUrl);
+const db = monk(process.env.NOTES_DB);
 
 router.get('/:timestamp', function(req, res) {
   const user = db.get(req.session.passport.user)
