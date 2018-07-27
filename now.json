@@ -6,5 +6,13 @@
     "USERS_DB": "@users-db",
     "NOTES_DB": "@notes-db",
     "SESSION_SECRET": "@session-secret"
-  }
+  },
+  "files": [
+    "client/public",
+    "dist",
+    "package.json",
+    "package-lock.json",
+    "LICENSE",
+    "now.json"
+  ]
 }
