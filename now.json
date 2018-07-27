@@ -1,0 +1,10 @@
+{
+  "name": "markitdown",
+  "alias": "markitdown",
+  "env": {
+    "NODE_ENV": "production",
+    "USERS_DB": "@users-db",
+    "NOTES_DB": "@notes-db",
+    "SESSION_SECRET": "@session-secret"
+  }
+}
