@@ -8,8 +8,9 @@
     "test:watch": "npm test -- --watch",
     "build:server": "babel ./server -d dist",
     "build:client": "webpack -p --config webpack.prod.js --progress",
-    "start": "nodemon ./server/server.js --exec babel-node",
-    "serve": "node ./server/server.js"
+	  "build": "npm run build:server && npm run build:client",
+    "dev": "nodemon ./server/server.js --exec babel-node",
+    "start": "node ./dist/server.js"
   },
   "keywords": [
     "notes",
