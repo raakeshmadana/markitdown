@@ -16,7 +16,7 @@ class Home extends React.Component {
     return (
       <div id="home">
         <div id="head">
-          <h1>Notes</h1>
+          <h1>MarkitDown</h1>
           <big>Take notes using Markdown</big>
         </div>
         <Form />

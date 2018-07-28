@@ -1,7 +1,7 @@
 {
-  "name": "notes",
+  "name": "markitdown",
   "version": "1.0.0",
-  "description": "A web application to write notes using Markdown",
+  "description": "Take notes using Markdown",
   "main": "./server/server.js",
   "scripts": {
     "now-build": "echo 'Built on Travis CI'",
