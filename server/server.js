@@ -25,6 +25,8 @@ if(process.env.NODE_ENV === 'development') {
 
   app.use(webpackHotMiddleware(compiler));
   app.use(logger('dev'));
+} else {
+  app.use(logger('combined'));
 }
 
 //Import routes
