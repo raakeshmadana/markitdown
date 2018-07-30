@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signUp, logIn, clearError } from '../actions';
+import { signUp, logIn, clearError } from '../../actions';
+import './Form.css';
 
 class Form extends React.Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Form from '../Form';
+import Form from '../Form/Form';
 import './Home.css';
 
 class Home extends React.Component {

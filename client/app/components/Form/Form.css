@@ -1,0 +1,5 @@
+#form, form {
+  display: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+}
