@@ -115,9 +115,7 @@ class Form extends React.Component {
       <div id="form">
         <hr/>
         {
-          this.state.signUp ?
-            (<h3>Sign Up / <button type="button" onClick={this.toggleForm} className="btn btn-link"><h3>Log In</h3></button></h3>) :
-            (<h3><button type="button" onClick={this.toggleForm} className="btn btn-link"><h3>Sign Up</h3></button> / Log In</h3>)
+          this.state.signUp ? <h3>Sign Up</h3> : <h3>Log In</h3>
         }
         <form onSubmit={this.submit}>
           <div className="form-group">
@@ -135,6 +133,11 @@ class Form extends React.Component {
               (<small className="form-text"><em>{this.props.logInError ? 'Credentials Incorrect' : ''}</em></small>)
           }
         </form>
+        <button type="button" onClick={this.toggleForm} className="btn btn-link">
+          {
+            this.state.signUp? "Log In" : "Sign Up"
+          }
+        </button>
       </div>
     );
   }
